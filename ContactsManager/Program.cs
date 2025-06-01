@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Configuration;
+using System.Linq.Expressions;
+
 namespace ContactsManager
 {
     internal static class Program
@@ -8,10 +11,24 @@ namespace ContactsManager
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+
+            var builder = new ConfigurationBuilder()
+                .AddUserSecrets(typeof(Program).Assembly);
+
+            IConfiguration configuration = builder.Build();
+
+            try
+            {
+                string connectionString = configuration["ConnectionString:Default"]
+                    ?? throw new ArgumentNullException("Connection string not found");
+
+                Application.Run(new Form1(connectionString));
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(string.Join(", ", ex.Message));
+            }
         }
     }
 }
