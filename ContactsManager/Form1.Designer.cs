@@ -37,9 +37,9 @@
             lblPhoneNumber = new Label();
             lblFirstName = new Label();
             contactBindingSource = new BindingSource(components);
-            dgvData = new DataGridView();
+            dvgData = new DataGridView();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            PhoneNumber = new DataGridViewTextBoxColumn();
+            phoneNumberDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             lastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
@@ -54,7 +54,7 @@
             errorProvider1 = new ErrorProvider(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)contactBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvData).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dvgData).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -145,16 +145,16 @@
             // 
             contactBindingSource.DataSource = typeof(Contact);
             // 
-            // dgvData
+            // dvgData
             // 
-            dgvData.AutoGenerateColumns = false;
-            dgvData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvData.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, PhoneNumber, firstNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn });
-            dgvData.DataSource = contactBindingSource;
-            dgvData.Location = new Point(371, 0);
-            dgvData.Name = "dgvData";
-            dgvData.Size = new Size(344, 351);
-            dgvData.TabIndex = 1;
+            dvgData.AutoGenerateColumns = false;
+            dvgData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dvgData.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, phoneNumberDataGridViewTextBoxColumn, firstNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn });
+            dvgData.DataSource = contactBindingSource;
+            dvgData.Location = new Point(371, 0);
+            dvgData.Name = "dvgData";
+            dvgData.Size = new Size(344, 351);
+            dvgData.TabIndex = 1;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -163,10 +163,11 @@
             idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             idDataGridViewTextBoxColumn.Visible = false;
             // 
-            // PhoneNumber
+            // phoneNumberDataGridViewTextBoxColumn
             // 
-            PhoneNumber.HeaderText = "PhoneNumber";
-            PhoneNumber.Name = "PhoneNumber";
+            phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
+            phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
+            phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
             // 
             // firstNameDataGridViewTextBoxColumn
             // 
@@ -283,17 +284,18 @@
             AutoScroll = true;
             ClientSize = new Size(715, 351);
             Controls.Add(panel2);
-            Controls.Add(dgvData);
+            Controls.Add(dvgData);
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ContactsManager";
+            Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)contactBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvData).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dvgData).EndInit();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -313,11 +315,7 @@
         private Label lblLastName;
         private Label lblFirstName;
         private BindingSource contactBindingSource;
-        private DataGridView dgvData;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn PhoneNumber;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private DataGridView dvgData;
         private Panel panel2;
         private Button btnDelete;
         private Button btnEdit;
@@ -328,5 +326,9 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
     }
 }

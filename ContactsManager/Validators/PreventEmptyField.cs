@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContactsManager
+namespace ContactsManager.Validators
 {
-    public static class ValidateHelpers
+    public static class PreventEmptyField
     {
         public static bool ValidateNotEmpty(string input, out string errorMsg)
         {

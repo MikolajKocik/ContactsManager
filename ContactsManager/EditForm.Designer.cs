@@ -28,18 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            btnSubmit = new Button();
+            chkLastName = new CheckBox();
+            chkFirstName = new CheckBox();
+            chkPhoneNumber = new CheckBox();
             txtPhoneNumber = new TextBox();
             txtLastName = new TextBox();
             txtFirstName = new TextBox();
             lblLastName = new Label();
             lblPhoneNumber = new Label();
             lblFirstName = new Label();
-            chkPhoneNumber = new CheckBox();
-            chkFirstName = new CheckBox();
-            chkLastName = new CheckBox();
-            btnSubmit = new Button();
+            errorProvider1 = new ErrorProvider(components);
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -59,7 +62,55 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(208, 471);
             panel1.TabIndex = 1;
-            panel1.Paint += panel1_Paint;
+            // 
+            // btnSubmit
+            // 
+            btnSubmit.Location = new Point(67, 417);
+            btnSubmit.Name = "btnSubmit";
+            btnSubmit.Size = new Size(75, 23);
+            btnSubmit.TabIndex = 9;
+            btnSubmit.Text = "Submit";
+            btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Click += btnSubmit_Click;
+            // 
+            // chkLastName
+            // 
+            chkLastName.AutoSize = true;
+            chkLastName.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            chkLastName.ForeColor = Color.Orange;
+            chkLastName.Location = new Point(64, 367);
+            chkLastName.Name = "chkLastName";
+            chkLastName.Size = new Size(85, 19);
+            chkLastName.TabIndex = 8;
+            chkLastName.Text = "No change";
+            chkLastName.UseVisualStyleBackColor = true;
+            chkLastName.CheckedChanged += chkLastName_CheckedChanged;
+            // 
+            // chkFirstName
+            // 
+            chkFirstName.AutoSize = true;
+            chkFirstName.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            chkFirstName.ForeColor = Color.Orange;
+            chkFirstName.Location = new Point(64, 230);
+            chkFirstName.Name = "chkFirstName";
+            chkFirstName.Size = new Size(85, 19);
+            chkFirstName.TabIndex = 7;
+            chkFirstName.Text = "No change";
+            chkFirstName.UseVisualStyleBackColor = true;
+            chkFirstName.CheckedChanged += chkFirstName_CheckedChanged;
+            // 
+            // chkPhoneNumber
+            // 
+            chkPhoneNumber.AutoSize = true;
+            chkPhoneNumber.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            chkPhoneNumber.ForeColor = Color.Orange;
+            chkPhoneNumber.Location = new Point(64, 100);
+            chkPhoneNumber.Name = "chkPhoneNumber";
+            chkPhoneNumber.Size = new Size(85, 19);
+            chkPhoneNumber.TabIndex = 6;
+            chkPhoneNumber.Text = "No change";
+            chkPhoneNumber.UseVisualStyleBackColor = true;
+            chkPhoneNumber.CheckedChanged += chkPhoneNumber_CheckedChanged;
             // 
             // txtPhoneNumber
             // 
@@ -115,50 +166,9 @@
             lblFirstName.TabIndex = 0;
             lblFirstName.Text = "First Name";
             // 
-            // chkPhoneNumber
+            // errorProvider1
             // 
-            chkPhoneNumber.AutoSize = true;
-            chkPhoneNumber.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            chkPhoneNumber.ForeColor = Color.Orange;
-            chkPhoneNumber.Location = new Point(64, 100);
-            chkPhoneNumber.Name = "chkPhoneNumber";
-            chkPhoneNumber.Size = new Size(85, 19);
-            chkPhoneNumber.TabIndex = 6;
-            chkPhoneNumber.Text = "No change";
-            chkPhoneNumber.UseVisualStyleBackColor = true;
-            // 
-            // chkFirstName
-            // 
-            chkFirstName.AutoSize = true;
-            chkFirstName.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            chkFirstName.ForeColor = Color.Orange;
-            chkFirstName.Location = new Point(64, 230);
-            chkFirstName.Name = "chkFirstName";
-            chkFirstName.Size = new Size(85, 19);
-            chkFirstName.TabIndex = 7;
-            chkFirstName.Text = "No change";
-            chkFirstName.UseVisualStyleBackColor = true;
-            // 
-            // chkLastName
-            // 
-            chkLastName.AutoSize = true;
-            chkLastName.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            chkLastName.ForeColor = Color.Orange;
-            chkLastName.Location = new Point(64, 367);
-            chkLastName.Name = "chkLastName";
-            chkLastName.Size = new Size(85, 19);
-            chkLastName.TabIndex = 8;
-            chkLastName.Text = "No change";
-            chkLastName.UseVisualStyleBackColor = true;
-            // 
-            // btnSubmit
-            // 
-            btnSubmit.Location = new Point(67, 417);
-            btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(75, 23);
-            btnSubmit.TabIndex = 9;
-            btnSubmit.Text = "Submit";
-            btnSubmit.UseVisualStyleBackColor = true;
+            errorProvider1.ContainerControl = this;
             // 
             // EditForm
             // 
@@ -167,9 +177,11 @@
             ClientSize = new Size(209, 472);
             Controls.Add(panel1);
             Name = "EditForm";
-            Text = "EditForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Edit";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -186,5 +198,6 @@
         private CheckBox chkLastName;
         private CheckBox chkFirstName;
         private CheckBox chkPhoneNumber;
+        private ErrorProvider errorProvider1;
     }
 }
