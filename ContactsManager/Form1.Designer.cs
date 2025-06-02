@@ -43,6 +43,10 @@
             firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             lastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
+            pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox1 = new PictureBox();
             btnDelete = new Button();
             btnEdit = new Button();
             btnSearch = new Button();
@@ -52,6 +56,10 @@
             ((System.ComponentModel.ISupportInitialize)contactBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvData).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
@@ -64,35 +72,39 @@
             panel1.Controls.Add(lblLastName);
             panel1.Controls.Add(lblPhoneNumber);
             panel1.Controls.Add(lblFirstName);
-            panel1.Location = new Point(1, 1);
+            panel1.Location = new Point(181, -6);
             panel1.Name = "panel1";
-            panel1.Size = new Size(554, 136);
+            panel1.Size = new Size(193, 357);
             panel1.TabIndex = 0;
             // 
             // txtPhoneNumber
             // 
-            txtPhoneNumber.Location = new Point(51, 66);
+            txtPhoneNumber.Location = new Point(29, 92);
             txtPhoneNumber.Name = "txtPhoneNumber";
             txtPhoneNumber.Size = new Size(132, 25);
             txtPhoneNumber.TabIndex = 5;
+            txtPhoneNumber.KeyDown += txtPhoneNumber_KeyDown;
+            txtPhoneNumber.KeyPress += txtPhoneNumber_KeyPress;
             txtPhoneNumber.Validating += txtPhoneNumber_Validating;
             txtPhoneNumber.Validated += txtPhoneNumber_Validated;
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(393, 66);
+            txtLastName.Location = new Point(30, 275);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(132, 25);
             txtLastName.TabIndex = 4;
+            txtLastName.KeyPress += txtLastName_KeyPress;
             txtLastName.Validating += txtLastName_Validating;
             txtLastName.Validated += txtLastName_Validated;
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(222, 66);
+            txtFirstName.Location = new Point(30, 183);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(132, 25);
             txtFirstName.TabIndex = 3;
+            txtFirstName.KeyPress += txtFirstName_KeyPress;
             txtFirstName.Validating += txtFirstName_Validating;
             txtFirstName.Validated += txtFirstName_Validated;
             // 
@@ -101,7 +113,7 @@
             lblLastName.AutoSize = true;
             lblLastName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             lblLastName.ForeColor = Color.White;
-            lblLastName.Location = new Point(415, 31);
+            lblLastName.Location = new Point(51, 240);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(90, 21);
             lblLastName.TabIndex = 1;
@@ -112,7 +124,7 @@
             lblPhoneNumber.AutoSize = true;
             lblPhoneNumber.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             lblPhoneNumber.ForeColor = Color.White;
-            lblPhoneNumber.Location = new Point(59, 31);
+            lblPhoneNumber.Location = new Point(38, 58);
             lblPhoneNumber.Name = "lblPhoneNumber";
             lblPhoneNumber.Size = new Size(115, 20);
             lblPhoneNumber.TabIndex = 2;
@@ -123,7 +135,7 @@
             lblFirstName.AutoSize = true;
             lblFirstName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             lblFirstName.ForeColor = Color.White;
-            lblFirstName.Location = new Point(242, 31);
+            lblFirstName.Location = new Point(50, 148);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(92, 21);
             lblFirstName.TabIndex = 0;
@@ -139,9 +151,9 @@
             dgvData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvData.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, PhoneNumber, firstNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn });
             dgvData.DataSource = contactBindingSource;
-            dgvData.Location = new Point(1, 136);
+            dgvData.Location = new Point(371, 0);
             dgvData.Name = "dgvData";
-            dgvData.Size = new Size(344, 152);
+            dgvData.Size = new Size(344, 351);
             dgvData.TabIndex = 1;
             // 
             // idDataGridViewTextBoxColumn
@@ -170,19 +182,59 @@
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.BackColor = Color.WhiteSmoke;
+            panel2.Controls.Add(pictureBox4);
+            panel2.Controls.Add(pictureBox3);
+            panel2.Controls.Add(pictureBox2);
+            panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(btnDelete);
             panel2.Controls.Add(btnEdit);
             panel2.Controls.Add(btnSearch);
             panel2.Controls.Add(btnAdd);
-            panel2.Location = new Point(344, 136);
+            panel2.Location = new Point(-1, -3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(211, 152);
+            panel2.Size = new Size(185, 354);
             panel2.TabIndex = 2;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackgroundImage = Properties.Resources.delete;
+            pictureBox4.Location = new Point(13, 277);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(47, 50);
+            pictureBox4.TabIndex = 7;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackgroundImage = Properties.Resources.edit;
+            pictureBox3.Location = new Point(13, 200);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(47, 50);
+            pictureBox3.TabIndex = 6;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackgroundImage = Properties.Resources.add;
+            pictureBox2.Location = new Point(13, 123);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(50, 50);
+            pictureBox2.TabIndex = 5;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = Properties.Resources.search;
+            pictureBox1.Location = new Point(13, 42);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(50, 50);
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(119, 98);
+            btnDelete.Location = new Point(84, 291);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 3;
@@ -192,7 +244,7 @@
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(18, 98);
+            btnEdit.Location = new Point(84, 214);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(75, 23);
             btnEdit.TabIndex = 2;
@@ -202,7 +254,7 @@
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(119, 36);
+            btnSearch.Location = new Point(84, 58);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(75, 23);
             btnSearch.TabIndex = 1;
@@ -212,7 +264,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(18, 36);
+            btnAdd.Location = new Point(84, 136);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(75, 23);
             btnAdd.TabIndex = 0;
@@ -229,7 +281,7 @@
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(556, 288);
+            ClientSize = new Size(715, 351);
             Controls.Add(panel2);
             Controls.Add(dgvData);
             Controls.Add(panel1);
@@ -243,6 +295,10 @@
             ((System.ComponentModel.ISupportInitialize)contactBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvData).EndInit();
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
@@ -268,5 +324,9 @@
         private Button btnSearch;
         private Button btnAdd;
         private ErrorProvider errorProvider1;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox1;
     }
 }

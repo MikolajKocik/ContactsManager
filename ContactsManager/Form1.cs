@@ -1,4 +1,5 @@
 using Npgsql;
+using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -7,6 +8,8 @@ namespace ContactsManager
     public partial class Form1 : Form
     {
         private string _connectionString;
+
+        private bool nonNumberEntered = false;
 
         public Form1(string connectionString)
         {
@@ -63,7 +66,7 @@ namespace ContactsManager
         {
             string errorMsg;
 
-            if(!ValidateHelpers.ValidateNotEmpty(txtPhoneNumber.Text, out errorMsg))
+            if (!ValidateHelpers.ValidateNotEmpty(txtPhoneNumber.Text, out errorMsg))
             {
                 e.Cancel = true;
                 txtPhoneNumber.Select(0, txtPhoneNumber.Text.Length);
@@ -89,7 +92,7 @@ namespace ContactsManager
         {
             string errorMsg;
 
-            if(!ValidateHelpers.ValidateNotEmpty(txtLastName.Text, out errorMsg))
+            if (!ValidateHelpers.ValidateNotEmpty(txtLastName.Text, out errorMsg))
             {
                 e.Cancel = true;
                 txtLastName.Select(0, txtLastName.Text.Length);
@@ -114,6 +117,61 @@ namespace ContactsManager
         private void txtLastName_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(txtLastName, "");
+
+        }
+
+        // KeyPress
+
+        private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(nonNumberEntered == true)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtFirstName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextChecker(sender as TextBox, e);
+        }
+
+        private void txtLastName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextChecker(sender as TextBox , e);
+        }
+
+        private void TextChecker(TextBox textBox, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == ' ' && textBox.Text.Contains(' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        // KeyDown Phone Number
+
+        private void txtPhoneNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            nonNumberEntered = false;
+
+            if(e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9)
+            {
+                if(e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)
+                {
+                    if(e.KeyCode != Keys.Back) // backspace
+                    {
+                        nonNumberEntered = true;
+                    }    
+                }
+            }
+
+            if (Control.ModifierKeys == Keys.Shift)
+                nonNumberEntered = true;
 
         }
     }
