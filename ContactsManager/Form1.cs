@@ -55,13 +55,14 @@ namespace ContactsManager
             }
             else
             {
-                MessageBox.Show("Please fix the errors before submitting.");
+                MessageBox.Show("Please fix the errors before submitting.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            SearchForm form = new SearchForm(this);
+            form.Show();
         }
 
         public void btnEdit_Click(object sender, EventArgs e)
@@ -72,7 +73,7 @@ namespace ContactsManager
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         // Validating
@@ -94,7 +95,7 @@ namespace ContactsManager
 
         // Validating method
 
-        private void TextBoxValidating(TextBox textbox, CancelEventArgs e)
+        public void TextBoxValidating(TextBox textbox, CancelEventArgs e)
         {
             string errorMsg;
 
@@ -137,7 +138,13 @@ namespace ContactsManager
 
         public void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtPhoneNumber.Text.Length >= 9 && e.KeyChar != '\b')
+            var textBox = (TextBox)sender;
+            if (textBox == null)
+            {
+
+            }
+
+            if (textBox.Text.Length >= 9 && e.KeyChar != '\b')
                 e.Handled = true;
 
             if (nonNumberEntered == true)
@@ -216,6 +223,16 @@ namespace ContactsManager
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtFirstName.Text = " ";
+            txtLastName.Text = " ";
+            txtPhoneNumber.Text = " ";
+            errorProvider1.SetError(txtFirstName, "");
+            errorProvider1.SetError(txtLastName, "");
+            errorProvider1.SetError(txtPhoneNumber, "");
         }
     }
 }

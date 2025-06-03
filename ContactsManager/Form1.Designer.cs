@@ -53,6 +53,8 @@
             btnAdd = new Button();
             errorProvider1 = new ErrorProvider(components);
             panel3 = new Panel();
+            pictureBox7 = new PictureBox();
+            btnClear = new Button();
             pictureBox6 = new PictureBox();
             pictureBox5 = new PictureBox();
             btnRefresh = new Button();
@@ -66,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
@@ -244,6 +247,7 @@
             // btnDelete
             // 
             btnDelete.BackColor = SystemColors.GradientActiveCaption;
+            btnDelete.Cursor = Cursors.Hand;
             btnDelete.FlatAppearance.BorderColor = Color.Black;
             btnDelete.FlatAppearance.MouseOverBackColor = Color.Orange;
             btnDelete.FlatStyle = FlatStyle.Flat;
@@ -258,6 +262,7 @@
             // btnEdit
             // 
             btnEdit.BackColor = SystemColors.GradientActiveCaption;
+            btnEdit.Cursor = Cursors.Hand;
             btnEdit.FlatAppearance.BorderColor = Color.Black;
             btnEdit.FlatAppearance.MouseOverBackColor = Color.Orange;
             btnEdit.FlatStyle = FlatStyle.Flat;
@@ -272,6 +277,7 @@
             // btnSearch
             // 
             btnSearch.BackColor = SystemColors.GradientActiveCaption;
+            btnSearch.Cursor = Cursors.Hand;
             btnSearch.FlatAppearance.BorderColor = Color.Black;
             btnSearch.FlatAppearance.MouseOverBackColor = Color.Orange;
             btnSearch.FlatStyle = FlatStyle.Flat;
@@ -287,6 +293,7 @@
             // btnAdd
             // 
             btnAdd.BackColor = SystemColors.GradientActiveCaption;
+            btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatAppearance.BorderColor = Color.Black;
             btnAdd.FlatAppearance.MouseOverBackColor = Color.Orange;
             btnAdd.FlatStyle = FlatStyle.Flat;
@@ -305,6 +312,8 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.ControlLight;
+            panel3.Controls.Add(pictureBox7);
+            panel3.Controls.Add(btnClear);
             panel3.Controls.Add(pictureBox6);
             panel3.Controls.Add(pictureBox5);
             panel3.Controls.Add(btnRefresh);
@@ -312,6 +321,29 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(184, 353);
             panel3.TabIndex = 3;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.BackgroundImage = Properties.Resources.edit_clear_history_973x1024;
+            pictureBox7.Location = new Point(123, 280);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(47, 50);
+            pictureBox7.TabIndex = 4;
+            pictureBox7.TabStop = false;
+            // 
+            // btnClear
+            // 
+            btnClear.BackColor = SystemColors.GradientActiveCaption;
+            btnClear.Cursor = Cursors.Hand;
+            btnClear.FlatAppearance.MouseOverBackColor = Color.Orange;
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Location = new Point(23, 283);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(75, 47);
+            btnClear.TabIndex = 3;
+            btnClear.Text = "Clear fields";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
             // pictureBox6
             // 
@@ -335,6 +367,8 @@
             // btnRefresh
             // 
             btnRefresh.BackColor = SystemColors.GradientActiveCaption;
+            btnRefresh.Cursor = Cursors.Hand;
+            btnRefresh.FlatAppearance.MouseOverBackColor = Color.Orange;
             btnRefresh.FlatStyle = FlatStyle.Flat;
             btnRefresh.Location = new Point(23, 198);
             btnRefresh.Name = "btnRefresh";
@@ -372,6 +406,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
@@ -406,5 +441,7 @@
         private PictureBox pictureBox5;
         private Button btnRefresh;
         private PictureBox pictureBox6;
+        private Button btnClear;
+        private PictureBox pictureBox7;
     }
 }

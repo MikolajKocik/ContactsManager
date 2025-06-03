@@ -17,23 +17,29 @@ namespace ContactsManager
 
             this.AutoValidate = AutoValidate.Disable;
 
+            txtActualPhoneNumber.CausesValidation = true;
+
             // events
 
             txtFirstName.KeyPress += _formMain.txtFirstName_KeyPress;
             txtLastName.KeyPress += _formMain.txtLastName_KeyPress;
             txtPhoneNumber.KeyPress += _formMain.txtPhoneNumber_KeyPress;
+            txtActualPhoneNumber.KeyPress += _formMain.txtPhoneNumber_KeyPress;
 
             txtPhoneNumber.KeyDown += _formMain.txtPhoneNumber_KeyDown;
+            txtActualPhoneNumber.KeyDown += _formMain.txtPhoneNumber_KeyDown;
 
             txtFirstName.Validating += _formMain.txtFirstName_Validating;
             txtLastName.Validating += _formMain.txtLastName_Validating;
             txtPhoneNumber.Validating += _formMain.txtPhoneNumber_Validating;
+            txtActualPhoneNumber.Validating += _formMain.txtPhoneNumber_Validating;
 
             txtFirstName.Validated += _formMain.txtFirstName_Validated;
             txtLastName.Validated += _formMain.txtLastName_Validated;
             txtPhoneNumber.Validated += _formMain.txtPhoneNumber_Validated;
+            txtActualPhoneNumber.Validated += _formMain.txtPhoneNumber_Validated;
 
-            _connectionString = formMain.ConnectionString;
+            _connectionString = _formMain.ConnectionString;
         }
 
         private void chkLastName_CheckedChanged(object sender, EventArgs e)
@@ -75,8 +81,8 @@ namespace ContactsManager
             if (this.ValidateChildren())
             {
                 string phoneNumber = txtPhoneNumber.Text;
-                string firstName = chkFirstName.Checked || string.IsNullOrWhiteSpace(txtFirstName.Text) ? await LoadDataFromDatabase("FirstName", phoneNumber) :  txtFirstName.Text;
-                string lastName = chkLastName.Checked || string.IsNullOrWhiteSpace(txtLastName.Text) ? await LoadDataFromDatabase("LastName", phoneNumber) :  txtLastName.Text;
+                string firstName = chkFirstName.Checked || string.IsNullOrWhiteSpace(txtFirstName.Text) ? await LoadDataFromDatabase("FirstName", phoneNumber) : txtFirstName.Text;
+                string lastName = chkLastName.Checked || string.IsNullOrWhiteSpace(txtLastName.Text) ? await LoadDataFromDatabase("LastName", phoneNumber) : txtLastName.Text;
 
                 await using var connection = new NpgsqlConnection(_connectionString);
 
@@ -127,7 +133,75 @@ namespace ContactsManager
 
             var result = await command.ExecuteScalarAsync();
 
-            return result?.ToString() ?? throw new ArgumentNullException($"{column} not found"); 
+            return result?.ToString() ?? throw new ArgumentNullException($"{column} not found");
+        }
+
+        private async void btnLoadCurrentData_Click(object sender, EventArgs e)
+        {
+            string phoneNumber = txtActualPhoneNumber.Text;
+
+            if (!string.IsNullOrWhiteSpace(phoneNumber))
+            {
+                await LoadCurrentDataToEdit(phoneNumber);
+            }
+            else
+            {
+                MessageBox.Show("Firstly provide phone number", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private async Task LoadCurrentDataToEdit(string phoneNumber)
+        {
+            try
+            {
+                var isAvailable = await PhoneExist(phoneNumber);
+
+                if (isAvailable == false)
+                {
+                    throw new ArgumentNullException("Provided phone number does not exist");
+                }
+                else
+                {
+                    MessageBox.Show("Phone number was found", "Succeed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show("Phone number does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            await using var connection = new NpgsqlConnection(_connectionString);
+
+            await connection.OpenAsync();
+
+            string query = $"SELECT FirstName, LastName FROM data WHERE PhoneNumber = @phoneNumber";
+
+            await using var command = new NpgsqlCommand(query, connection);
+            command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+
+            await using var reader = await command.ExecuteReaderAsync();
+
+            if(reader.Read())
+            {
+                lblFirstName.Text = reader["FirstName"].ToString();
+                lblLastName.Text = reader["LastName"].ToString();
+            }
+        }
+
+        private async Task<bool> PhoneExist(string phoneNumber)
+        {
+            await using var connection = new NpgsqlConnection(_connectionString);
+
+            await connection.OpenAsync();
+
+            string query = $"SELECT PhoneNumber FROM data WHERE PhoneNumber = @phoneNumber";
+
+            await using var command = new NpgsqlCommand(query, connection);
+            command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+
+            var result = (string)await command.ExecuteScalarAsync();
+
+            return !string.IsNullOrEmpty(result) ? true : false;
         }
     }
 }
