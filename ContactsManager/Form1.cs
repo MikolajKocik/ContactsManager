@@ -27,6 +27,7 @@ namespace ContactsManager
             this.AutoValidate = AutoValidate.Disable;
 
             // Turns off validations for buttons
+            btnRefresh.CausesValidation = false;
             btnSearch.CausesValidation = false;
             btnAdd.CausesValidation = false;
             btnEdit.CausesValidation = false;
@@ -210,6 +211,11 @@ namespace ContactsManager
             dataTable.Load(reader);
 
             dvgData.DataSource = dataTable;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

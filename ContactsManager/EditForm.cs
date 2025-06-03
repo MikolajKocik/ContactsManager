@@ -1,13 +1,4 @@
 ﻿using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ContactsManager
 {
@@ -43,46 +34,49 @@ namespace ContactsManager
             txtPhoneNumber.Validated += _formMain.txtPhoneNumber_Validated;
 
             _connectionString = formMain.ConnectionString;
-
-            txtLastName.Text = formMain.LastName;
-            txtFirstName.Text = formMain.FirstName;
-            txtPhoneNumber.Text = formMain.PhoneNumber;
         }
 
         private void chkLastName_CheckedChanged(object sender, EventArgs e)
         {
-            if (Checked(chkLastName) == true)
+            if (chkLastName.Checked)
             {
+                txtLastName.CausesValidation = false;
+                txtLastName.Validating -= _formMain.txtLastName_Validating;
+                txtLastName.Validated -= _formMain.txtLastName_Validated;
                 errorProvider1.SetError(txtLastName, "");
+            }
+            else
+            {
+                txtLastName.CausesValidation = true;
+                txtLastName.Validating += _formMain.txtLastName_Validating;
+                txtLastName.Validated += _formMain.txtLastName_Validated;
             }
         }
 
         private void chkFirstName_CheckedChanged(object sender, EventArgs e)
         {
-            if (Checked(chkFirstName) == true)
+            if (chkFirstName.Checked)
             {
+                txtFirstName.CausesValidation = false;
+                txtFirstName.Validating -= _formMain.txtFirstName_Validating;
+                txtFirstName.Validated -= _formMain.txtFirstName_Validated;
                 errorProvider1.SetError(txtFirstName, "");
             }
-        }
-
-        private void chkPhoneNumber_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Checked(chkPhoneNumber) == true)
+            else
             {
-                errorProvider1.SetError(txtPhoneNumber, "");
+                txtFirstName.CausesValidation = true;
+                txtFirstName.Validating += _formMain.txtFirstName_Validating;
+                txtFirstName.Validated += _formMain.txtFirstName_Validated;
             }
         }
-
-        private bool Checked(CheckBox checkBox)
-            => checkBox.Checked;
 
         private async void btnSubmit_Click(object sender, EventArgs e)
         {
             if (this.ValidateChildren())
             {
-                string firstName = txtFirstName.Text;
-                string lastName = txtLastName.Text;
                 string phoneNumber = txtPhoneNumber.Text;
+                string firstName = chkFirstName.Checked || string.IsNullOrWhiteSpace(txtFirstName.Text) ? await LoadDataFromDatabase("FirstName", phoneNumber) :  txtFirstName.Text;
+                string lastName = chkLastName.Checked || string.IsNullOrWhiteSpace(txtLastName.Text) ? await LoadDataFromDatabase("LastName", phoneNumber) :  txtLastName.Text;
 
                 await using var connection = new NpgsqlConnection(_connectionString);
 
@@ -103,15 +97,37 @@ namespace ContactsManager
                     updateCommand.Parameters.AddWithValue("@phoneNumber", phoneNumber);
                     updateCommand.Parameters.AddWithValue("@id", id.Value);
 
-                    await updateCommand.ExecuteNonQueryAsync();
-
-                    MessageBox.Show("Record updated", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        await updateCommand.ExecuteNonQueryAsync();
+                        MessageBox.Show("Record updated", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Npgsql.PostgresException ex)
+                    {
+                        MessageBox.Show(string.Join(", ", ex.Message, ex.Detail), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Close();
+                    }
                 }
                 else
                 {
                     MessageBox.Show("User with provided phone number not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private async Task<string> LoadDataFromDatabase(string column, string phoneNumber)
+        {
+            await using var connection = new NpgsqlConnection(_connectionString);
+
+            await connection.OpenAsync();
+
+            await using var command = new NpgsqlCommand($"SELECT {column} FROM data WHERE PhoneNumber = @phoneNumber", connection);
+
+            command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+
+            var result = await command.ExecuteScalarAsync();
+
+            return result?.ToString() ?? throw new ArgumentNullException($"{column} not found"); 
         }
     }
 }

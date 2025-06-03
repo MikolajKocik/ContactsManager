@@ -52,6 +52,10 @@
             btnSearch = new Button();
             btnAdd = new Button();
             errorProvider1 = new ErrorProvider(components);
+            panel3 = new Panel();
+            pictureBox6 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            btnRefresh = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)contactBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dvgData).BeginInit();
@@ -61,6 +65,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -72,14 +79,14 @@
             panel1.Controls.Add(lblLastName);
             panel1.Controls.Add(lblPhoneNumber);
             panel1.Controls.Add(lblFirstName);
-            panel1.Location = new Point(181, -6);
+            panel1.Location = new Point(181, -2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(193, 357);
+            panel1.Size = new Size(193, 353);
             panel1.TabIndex = 0;
             // 
             // txtPhoneNumber
             // 
-            txtPhoneNumber.Location = new Point(29, 92);
+            txtPhoneNumber.Location = new Point(31, 86);
             txtPhoneNumber.Name = "txtPhoneNumber";
             txtPhoneNumber.Size = new Size(132, 25);
             txtPhoneNumber.TabIndex = 5;
@@ -90,7 +97,7 @@
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(30, 275);
+            txtLastName.Location = new Point(32, 269);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(132, 25);
             txtLastName.TabIndex = 4;
@@ -100,7 +107,7 @@
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(30, 183);
+            txtFirstName.Location = new Point(32, 177);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(132, 25);
             txtFirstName.TabIndex = 3;
@@ -113,7 +120,7 @@
             lblLastName.AutoSize = true;
             lblLastName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             lblLastName.ForeColor = Color.White;
-            lblLastName.Location = new Point(51, 240);
+            lblLastName.Location = new Point(53, 234);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(90, 21);
             lblLastName.TabIndex = 1;
@@ -124,7 +131,7 @@
             lblPhoneNumber.AutoSize = true;
             lblPhoneNumber.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             lblPhoneNumber.ForeColor = Color.White;
-            lblPhoneNumber.Location = new Point(38, 58);
+            lblPhoneNumber.Location = new Point(40, 52);
             lblPhoneNumber.Name = "lblPhoneNumber";
             lblPhoneNumber.Size = new Size(115, 20);
             lblPhoneNumber.TabIndex = 2;
@@ -135,7 +142,7 @@
             lblFirstName.AutoSize = true;
             lblFirstName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             lblFirstName.ForeColor = Color.White;
-            lblFirstName.Location = new Point(50, 148);
+            lblFirstName.Location = new Point(52, 142);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(92, 21);
             lblFirstName.TabIndex = 0;
@@ -147,13 +154,14 @@
             // 
             // dvgData
             // 
+            dvgData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dvgData.AutoGenerateColumns = false;
             dvgData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dvgData.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, phoneNumberDataGridViewTextBoxColumn, firstNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn });
             dvgData.DataSource = contactBindingSource;
-            dvgData.Location = new Point(371, 0);
+            dvgData.Location = new Point(371, -2);
             dvgData.Name = "dvgData";
-            dvgData.Size = new Size(344, 351);
+            dvgData.Size = new Size(344, 358);
             dvgData.TabIndex = 1;
             // 
             // idDataGridViewTextBoxColumn
@@ -192,15 +200,15 @@
             panel2.Controls.Add(btnEdit);
             panel2.Controls.Add(btnSearch);
             panel2.Controls.Add(btnAdd);
-            panel2.Location = new Point(-1, -3);
+            panel2.Location = new Point(-1, -2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(185, 354);
+            panel2.Size = new Size(185, 353);
             panel2.TabIndex = 2;
             // 
             // pictureBox4
             // 
             pictureBox4.BackgroundImage = Properties.Resources.delete;
-            pictureBox4.Location = new Point(13, 277);
+            pictureBox4.Location = new Point(17, 271);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(47, 50);
             pictureBox4.TabIndex = 7;
@@ -209,7 +217,7 @@
             // pictureBox3
             // 
             pictureBox3.BackgroundImage = Properties.Resources.edit;
-            pictureBox3.Location = new Point(13, 200);
+            pictureBox3.Location = new Point(17, 194);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(47, 50);
             pictureBox3.TabIndex = 6;
@@ -218,7 +226,7 @@
             // pictureBox2
             // 
             pictureBox2.BackgroundImage = Properties.Resources.add;
-            pictureBox2.Location = new Point(13, 123);
+            pictureBox2.Location = new Point(17, 117);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(50, 50);
             pictureBox2.TabIndex = 5;
@@ -227,7 +235,7 @@
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = Properties.Resources.search;
-            pictureBox1.Location = new Point(13, 42);
+            pictureBox1.Location = new Point(17, 36);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(50, 50);
             pictureBox1.TabIndex = 4;
@@ -235,58 +243,119 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(84, 291);
+            btnDelete.BackColor = SystemColors.GradientActiveCaption;
+            btnDelete.FlatAppearance.BorderColor = Color.Black;
+            btnDelete.FlatAppearance.MouseOverBackColor = Color.Orange;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(88, 276);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(75, 23);
+            btnDelete.Size = new Size(75, 43);
             btnDelete.TabIndex = 3;
             btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(84, 214);
+            btnEdit.BackColor = SystemColors.GradientActiveCaption;
+            btnEdit.FlatAppearance.BorderColor = Color.Black;
+            btnEdit.FlatAppearance.MouseOverBackColor = Color.Orange;
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Location = new Point(88, 198);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(75, 23);
+            btnEdit.Size = new Size(75, 43);
             btnEdit.TabIndex = 2;
             btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.UseVisualStyleBackColor = false;
             btnEdit.Click += btnEdit_Click;
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(84, 58);
+            btnSearch.BackColor = SystemColors.GradientActiveCaption;
+            btnSearch.FlatAppearance.BorderColor = Color.Black;
+            btnSearch.FlatAppearance.MouseOverBackColor = Color.Orange;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Location = new Point(88, 41);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(75, 23);
+            btnSearch.Padding = new Padding(1);
+            btnSearch.Size = new Size(75, 43);
             btnSearch.TabIndex = 1;
             btnSearch.Text = "Search";
-            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(84, 136);
+            btnAdd.BackColor = SystemColors.GradientActiveCaption;
+            btnAdd.FlatAppearance.BorderColor = Color.Black;
+            btnAdd.FlatAppearance.MouseOverBackColor = Color.Orange;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Location = new Point(88, 121);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(75, 23);
+            btnAdd.Size = new Size(75, 43);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
             // errorProvider1
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // panel3
+            // 
+            panel3.BackColor = SystemColors.ControlLight;
+            panel3.Controls.Add(pictureBox6);
+            panel3.Controls.Add(pictureBox5);
+            panel3.Controls.Add(btnRefresh);
+            panel3.Location = new Point(712, -2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(184, 353);
+            panel3.TabIndex = 3;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackColor = Color.LightGray;
+            pictureBox6.BackgroundImage = Properties.Resources.contact_list_address_book_icon_address_ico_icon_design_android_book_square_design;
+            pictureBox6.Location = new Point(17, 18);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(150, 150);
+            pictureBox6.TabIndex = 2;
+            pictureBox6.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackgroundImage = Properties.Resources.refresh_icon_2048x2048_sx32gmk1;
+            pictureBox5.Location = new Point(120, 194);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(50, 50);
+            pictureBox5.TabIndex = 1;
+            pictureBox5.TabStop = false;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.BackColor = SystemColors.GradientActiveCaption;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Location = new Point(23, 198);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(75, 43);
+            btnRefresh.TabIndex = 0;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(715, 351);
+            ClientSize = new Size(896, 351);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(dvgData);
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
@@ -302,6 +371,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
         }
 
@@ -317,10 +389,6 @@
         private BindingSource contactBindingSource;
         private DataGridView dvgData;
         private Panel panel2;
-        private Button btnDelete;
-        private Button btnEdit;
-        private Button btnSearch;
-        private Button btnAdd;
         private ErrorProvider errorProvider1;
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
@@ -330,5 +398,13 @@
         private DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private Button btnDelete;
+        private Button btnEdit;
+        private Button btnSearch;
+        private Button btnAdd;
+        private Panel panel3;
+        private PictureBox pictureBox5;
+        private Button btnRefresh;
+        private PictureBox pictureBox6;
     }
 }

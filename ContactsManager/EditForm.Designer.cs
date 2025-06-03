@@ -33,7 +33,6 @@
             btnSubmit = new Button();
             chkLastName = new CheckBox();
             chkFirstName = new CheckBox();
-            chkPhoneNumber = new CheckBox();
             txtPhoneNumber = new TextBox();
             txtLastName = new TextBox();
             txtFirstName = new TextBox();
@@ -51,21 +50,20 @@
             panel1.Controls.Add(btnSubmit);
             panel1.Controls.Add(chkLastName);
             panel1.Controls.Add(chkFirstName);
-            panel1.Controls.Add(chkPhoneNumber);
             panel1.Controls.Add(txtPhoneNumber);
             panel1.Controls.Add(txtLastName);
             panel1.Controls.Add(txtFirstName);
             panel1.Controls.Add(lblLastName);
             panel1.Controls.Add(lblPhoneNumber);
             panel1.Controls.Add(lblFirstName);
-            panel1.Location = new Point(1, 1);
+            panel1.Location = new Point(0, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(208, 471);
+            panel1.Size = new Size(209, 471);
             panel1.TabIndex = 1;
             // 
             // btnSubmit
             // 
-            btnSubmit.Location = new Point(67, 417);
+            btnSubmit.Location = new Point(67, 413);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(75, 23);
             btnSubmit.TabIndex = 9;
@@ -78,7 +76,7 @@
             chkLastName.AutoSize = true;
             chkLastName.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
             chkLastName.ForeColor = Color.Orange;
-            chkLastName.Location = new Point(64, 367);
+            chkLastName.Location = new Point(64, 363);
             chkLastName.Name = "chkLastName";
             chkLastName.Size = new Size(85, 19);
             chkLastName.TabIndex = 8;
@@ -91,7 +89,7 @@
             chkFirstName.AutoSize = true;
             chkFirstName.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
             chkFirstName.ForeColor = Color.Orange;
-            chkFirstName.Location = new Point(64, 230);
+            chkFirstName.Location = new Point(64, 226);
             chkFirstName.Name = "chkFirstName";
             chkFirstName.Size = new Size(85, 19);
             chkFirstName.TabIndex = 7;
@@ -99,36 +97,23 @@
             chkFirstName.UseVisualStyleBackColor = true;
             chkFirstName.CheckedChanged += chkFirstName_CheckedChanged;
             // 
-            // chkPhoneNumber
-            // 
-            chkPhoneNumber.AutoSize = true;
-            chkPhoneNumber.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            chkPhoneNumber.ForeColor = Color.Orange;
-            chkPhoneNumber.Location = new Point(64, 100);
-            chkPhoneNumber.Name = "chkPhoneNumber";
-            chkPhoneNumber.Size = new Size(85, 19);
-            chkPhoneNumber.TabIndex = 6;
-            chkPhoneNumber.Text = "No change";
-            chkPhoneNumber.UseVisualStyleBackColor = true;
-            chkPhoneNumber.CheckedChanged += chkPhoneNumber_CheckedChanged;
-            // 
             // txtPhoneNumber
             // 
-            txtPhoneNumber.Location = new Point(41, 62);
+            txtPhoneNumber.Location = new Point(39, 76);
             txtPhoneNumber.Name = "txtPhoneNumber";
             txtPhoneNumber.Size = new Size(132, 23);
             txtPhoneNumber.TabIndex = 5;
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(39, 325);
+            txtLastName.Location = new Point(39, 321);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(132, 23);
             txtLastName.TabIndex = 4;
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(39, 189);
+            txtFirstName.Location = new Point(39, 185);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(132, 23);
             txtFirstName.TabIndex = 3;
@@ -138,7 +123,7 @@
             lblLastName.AutoSize = true;
             lblLastName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             lblLastName.ForeColor = Color.White;
-            lblLastName.Location = new Point(61, 290);
+            lblLastName.Location = new Point(61, 286);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(90, 21);
             lblLastName.TabIndex = 1;
@@ -149,18 +134,18 @@
             lblPhoneNumber.AutoSize = true;
             lblPhoneNumber.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             lblPhoneNumber.ForeColor = Color.White;
-            lblPhoneNumber.Location = new Point(49, 27);
+            lblPhoneNumber.Location = new Point(20, 37);
             lblPhoneNumber.Name = "lblPhoneNumber";
-            lblPhoneNumber.Size = new Size(115, 20);
+            lblPhoneNumber.Size = new Size(169, 20);
             lblPhoneNumber.TabIndex = 2;
-            lblPhoneNumber.Text = "Phone Number";
+            lblPhoneNumber.Text = "Provide phone number";
             // 
             // lblFirstName
             // 
             lblFirstName.AutoSize = true;
             lblFirstName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             lblFirstName.ForeColor = Color.White;
-            lblFirstName.Location = new Point(59, 154);
+            lblFirstName.Location = new Point(59, 150);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(92, 21);
             lblFirstName.TabIndex = 0;
@@ -197,7 +182,6 @@
         private Button btnSubmit;
         private CheckBox chkLastName;
         private CheckBox chkFirstName;
-        private CheckBox chkPhoneNumber;
         private ErrorProvider errorProvider1;
     }
 }

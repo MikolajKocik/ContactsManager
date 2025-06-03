@@ -73,6 +73,17 @@ namespace ContactsManager.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap contact_list_address_book_icon_address_ico_icon_design_android_book_square_design {
+            get {
+                object obj = ResourceManager.GetObject("contact-list-address-book-icon-address-ico-icon-design-android-book-square-design" +
+                        "", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
@@ -96,6 +107,16 @@ namespace ContactsManager.Properties {
         internal static System.Drawing.Bitmap edit1 {
             get {
                 object obj = ResourceManager.GetObject("edit1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh_icon_2048x2048_sx32gmk1 {
+            get {
+                object obj = ResourceManager.GetObject("refresh-icon-2048x2048-sx32gmk1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
