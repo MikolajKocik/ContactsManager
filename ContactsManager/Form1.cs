@@ -2,9 +2,6 @@ using ContactsManager.Validators;
 using Npgsql;
 using System.ComponentModel;
 using System.Data;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ContactsManager
 {
@@ -27,6 +24,7 @@ namespace ContactsManager
             this.AutoValidate = AutoValidate.Disable;
 
             // Turns off validations for buttons
+            btnClear.CausesValidation = false;
             btnRefresh.CausesValidation = false;
             btnSearch.CausesValidation = false;
             btnAdd.CausesValidation = false;
@@ -52,6 +50,7 @@ namespace ContactsManager
                 await command.ExecuteNonQueryAsync();
 
                 MessageBox.Show("Record added", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
             }
             else
             {
@@ -71,9 +70,50 @@ namespace ContactsManager
             form.Show();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private async void btnDelete_Click(object sender, EventArgs e)
         {
-            
+            if (dvgData.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a row to delete", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataGridViewRow selectedRow = dvgData.SelectedRows[0];
+
+            List<string> allValues = new List<string>();
+
+            foreach (DataGridViewCell cell in selectedRow.Cells)
+            {
+                allValues.Add(cell.Value?.ToString() ?? "");
+            }
+
+            string result = string.Join(", ", allValues.Skip(1)); // id not visible for user
+
+            var confirm = MessageBox.Show($"Are you sure you want to delete record with {result}?",
+                                  "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm != DialogResult.Yes)
+                return;
+
+            await using var connection = new NpgsqlConnection(ConnectionString);
+            await connection.OpenAsync();
+
+            string query = "DELETE FROM data WHERE PhoneNumber = @phoneNumber";
+
+            await using var command = new NpgsqlCommand(query, connection);
+            command.Parameters.AddWithValue("@phoneNumber", allValues[1]);
+
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+
+            if(rowsAffected > 0)
+            {
+                MessageBox.Show("Record deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
+            }
+            else
+            {
+                MessageBox.Show("Record not found or already deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Validating
@@ -139,10 +179,6 @@ namespace ContactsManager
         public void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             var textBox = (TextBox)sender;
-            if (textBox == null)
-            {
-
-            }
 
             if (textBox.Text.Length >= 9 && e.KeyChar != '\b')
                 e.Handled = true;
