@@ -32,7 +32,7 @@ Make sure the contacts database exists and contains the appropriate table (data)
 
 ```
 CREATE TABLE data (
-id SERIAL PRIMARY KEY,
+id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 FirstName VARCHAR(255),
 LastName VARCHAR(255),
 PhoneNumber VARCHAR(20)
