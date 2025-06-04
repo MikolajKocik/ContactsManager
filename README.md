@@ -1,48 +1,48 @@
 # ContactsManager
 
-Aplikacja desktopowa stworzona przy użyciu technologii WinForms (wersja standardowa, nie .NET Framework). Projekt umożliwia zarządzanie kontaktami w bazie PostgreSQL, korzystając z ADO.NET jako warstwy komunikacji z bazą danych.
+A desktop application created using WinForms technology (standard version, not .NET Framework). The project allows you to manage contacts in a PostgreSQL database, using ADO.NET as a database communication layer.
 
-## Opis
+## Description
 
-ContactsManager to prosta aplikacja typu CRUD (Create, Read, Update, Delete), umożliwiająca:
+ContactsManager is a simple CRUD (Create, Read, Update, Delete) application that allows you to:
 
-- Przeglądanie listy kontaktów w kontrolce DataGridView
-- Dodawanie nowych rekordów kontaktów
-- Edytowanie istniejących danych
-- Usuwanie wybranych rekordów
-- Wyszukiwanie kontaktów na podstawie numeru telefonu
-- Podstawową walidację pól (imię, nazwisko, numer telefonu)
+- Browse the contact list in the DataGridView control
+- Add new contact records
+- Edit existing data
+- Delete selected records
+- Search for contacts based on phone number
+- Basic field validation (name, surname, phone number)
 
-## Technologie
+## Technologies
 
-- **C#** – aplikacja Windows Forms
-- **ADO.NET** – komunikacja z bazą danych PostgreSQL
-- **PostgreSQL** – baza danych przechowująca kontakty
-- **Npgsql** – sterownik ADO.NET dla PostgreSQL
+- **C#** – Windows Forms application
+- **ADO.NET** – communication with the PostgreSQL database
+- **PostgreSQL** – database storing contacts
+- **Npgsql** – ADO.NET driver for PostgreSQL
 
-## Konfiguracja
+## Configuration
 
-W pliku `Form1.cs` należy ustawić poprawny łańcuch połączenia do bazy danych PostgreSQL:
+In the `Form1.cs` file, set the correct connection string to the PostgreSQL database:
 
-"Host=localhost;Port=5432;Username=postgres;Password=haslo;Database=kontakty";
+"Host=localhost;Port=yourPort;Username=yourUsername;Password=yourPassword;Database=databaseName";
 
-Mój connection string ustawiłem za pomocą dotnet user-secrets aby chronić wrażliwe dane.
+I set my connection string using dotnet user-secrets to protect sensitive data.
 
-Upewnij się, że baza danych kontakty istnieje i zawiera odpowiednią tabelę (data), np.:
+Make sure the contacts database exists and contains the appropriate table (data), e.g.:
 
 ```
 CREATE TABLE data (
-    id SERIAL PRIMARY KEY,
-    FirstName VARCHAR(255),
-    LastName VARCHAR(255),
-    PhoneNumber VARCHAR(20)
+id SERIAL PRIMARY KEY,
+FirstName VARCHAR(255),
+LastName VARCHAR(255),
+PhoneNumber VARCHAR(20)
 );
 ```
 
-## Uruchomienie
+## Start
 
- - Otwórz projekt w Visual Studio.
+- Open the project in Visual Studio.
 
-- Skonfiguruj łańcuch połączenia (ConnectionString) zgodnie z ustawieniami swojej bazy PostgreSQL.
+- Configure the ConnectionString according to your PostgreSQL database settings.
 
-- Uruchom projekt (F5 lub Ctrl+F5).
+- Run the project (F5 or Ctrl+F5).
